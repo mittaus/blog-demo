@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  database:
+    build: 
+      context: ./docker/db
+      dockerfile: Dockerfile
+    environment:
+      SA_PASSWORD: "123456Aa"
+      ACCEPT_EULA: "Y"
+      MSSQL_AGENT_ENABLED: "false"
+    container_name: db.dev
+    hostname: db.dev
+    ports:
+      - "10433:1433"
+  web:
+    container_name: web
+    build: 
+      context: .
+      dockerfile: docker/web/Dockerfile
+    environment:
+      "server.port": "8080"
+      "database.dialect": "sqlserver"
+      "database.user": "sa"
+      "database.password": "123456Aa"
+      "database.port": "1433"
+      "database.server": "db.dev"
+      "database.database": "BLOG_DEV"
+      "WAIT_HOSTS": db.dev:1433
+    ports: 
+      - "8080:8080"
+    restart: on-failure

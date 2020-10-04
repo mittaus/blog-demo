@@ -1,0 +1,13 @@
+.vscode
+.editorconfig
+.git
+.cache
+AUTHORS.md
+CONTRIBUTING.md
+LICENSE
+Makefile
+NOTICE
+README.md
+node_modules
+bin
+pkg
