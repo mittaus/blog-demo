@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/mittaus/blog-demo"
+    "url": "https://github.com/mittaus/blog-demo"
   },
   "keywords": [
     "blog",
@@ -28,5 +28,15 @@
     "@semantic-release/npm": "^7.0.6",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "semantic-release": "^17.1.2"
-  }
+  },
+  "release": {
+    "plugins": [
+     "@semantic-release/commit-analyzer",
+     "@semantic-release/release-notes-generator",
+     ["@semantic-release/npm",{"npmPublish":false}],
+     "@semantic-release/changelog",
+     "@semantic-release/git"
+   ],
+   "branch": "develop"
+ }
 }
