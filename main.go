@@ -5,6 +5,7 @@ import (
 	"os"
 	"strconv"
 
+	application_articles "example.com/mittaus/blog/application/articles"
 	application_tags "example.com/mittaus/blog/application/tags"
 	"example.com/mittaus/blog/config"
 	domain "example.com/mittaus/blog/domain"
@@ -17,9 +18,10 @@ func main() {
 	//Cargamos los parámetros de config.yaml
 	loadEnvConfig()
 
-	repo := loadRepo()
-	service := application_tags.NewTagManager(repo)
-	handler := server_routes.NewRouterHandler(service)
+	repoTag, repoArticle := loadRepo()
+	serviceTag := application_tags.NewTagManager(repoTag)
+	serviceArticle := application_articles.NewArticleManager(repoArticle)
+	handler := server_routes.NewRouterHandler(serviceTag, serviceArticle)
 
 	serverPort, _ := strconv.Atoi(os.Getenv("server.port"))
 	ginServer := config.NewServer(
@@ -32,7 +34,7 @@ func main() {
 	ginServer.Start()
 }
 
-func loadRepo() domain.ITagRepository {
+func loadRepo() (domain.ITagRepository, domain.IArticleRepository) {
 	var databaseDialect,
 		databaseUser,
 		databasePassword,
@@ -62,7 +64,7 @@ func loadRepo() domain.ITagRepository {
 		databaseDatabase = ""
 	}
 
-	if databasePort, isFound = os.LookupEnv("database.database"); !isFound {
+	if databasePort, isFound = os.LookupEnv("database.port"); !isFound {
 		databasePort = ""
 	}
 
@@ -70,8 +72,9 @@ func loadRepo() domain.ITagRepository {
 	if error != nil {
 		panic(error)
 	}
-	repository := mssql.NewTagRepository(db)
-	return repository
+	repositoryTag := mssql.NewTagRepository(db)
+	repositoryArticle := mssql.NewArticleRepository(db)
+	return repositoryTag, repositoryArticle
 }
 
 func loadEnvConfig() {

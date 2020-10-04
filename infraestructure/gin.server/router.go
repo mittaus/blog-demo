@@ -1,21 +1,23 @@
 package server
 
 import (
+	articles "example.com/mittaus/blog/application/articles"
 	tags "example.com/mittaus/blog/application/tags"
 	"github.com/gin-gonic/gin"
 )
 
 type RouterHandler struct {
-	tagHandler tags.ITagManager
+	tagHandler     tags.ITagManager
+	articleHandler articles.IArticleManager
 	// ucHandler   application.tags
 	// authHandler application.AuthHandler
 	// Logger      application.Logger
 }
 
-func NewRouterHandler(tagHandler tags.ITagManager) RouterHandler {
+func NewRouterHandler(tagHandler tags.ITagManager, articleHandler articles.IArticleManager) RouterHandler {
 	return RouterHandler{
-		tagHandler: tagHandler,
-		// authHandler: auth,
+		tagHandler:     tagHandler,
+		articleHandler: articleHandler,
 	}
 }
 
@@ -48,7 +50,7 @@ func (rH RouterHandler) SetRoutes(r *gin.Engine) {
 	// //Obtenga una lista de artículos
 	// apiv1.GET("/articles", v1.GetArticles)
 	// //Obtén el artículo especificado
-	// apiv1.GET("/articles/:id", v1.GetArticle)
+	apiv1.GET("/articles/:id", rH.articleHandler.Get)
 	// //Articulo nuevo
 	// apiv1.POST("/articles", v1.AddArticle)
 	// //Actualizar el artículo especificado
