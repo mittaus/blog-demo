@@ -9,6 +9,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mittaus/blog-demo.git"
+  },
   "keywords": [
     "blog",
     "golang",
@@ -27,12 +31,17 @@
   },
   "release": {
     "plugins": [
-     "@semantic-release/commit-analyzer",
-     "@semantic-release/release-notes-generator",
-     ["@semantic-release/npm",{"npmPublish":false}],
-     "@semantic-release/changelog",
-     "@semantic-release/git"
-   ],
-   "branch": "develop"
- }
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/changelog",
+      "@semantic-release/git"
+    ],
+    "branch": "develop"
+  }
 }
