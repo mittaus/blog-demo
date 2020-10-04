@@ -10,10 +10,11 @@ import (
 )
 
 func NewRepositories(Dbdriver, DbUser, DbPassword, DbPort, DbHost, DbName string) (*gorm.DB, error) {
-	dsn := fmt.Sprintf("sqlserver://%s:%s@%s?database=%s",
+	dsn := fmt.Sprintf("sqlserver://%s:%s@%s:%s?database=%s",
 		DbUser,
 		DbPassword,
 		DbHost,
+		DbPort,
 		DbName)
 
 	db, err := gorm.Open(sqlserver.Open(dsn),
