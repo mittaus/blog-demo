@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "proyecto de un blog para el curso de go",
   "main": "index.js",
   "directories": {
