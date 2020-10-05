@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -26,7 +25,7 @@ func main() {
 
 	serverPort, _ := strconv.Atoi(os.Getenv("server.port"))
 
-	fmt.Println("serverPort", serverPort)
+	log.Println("serverPort", serverPort)
 
 	ginServer := config.NewServer(
 		serverPort,
@@ -37,7 +36,7 @@ func main() {
 
 	ginServer.Start()
 
-	fmt.Println("server has started")
+	log.Println("server has started")
 }
 
 func loadRepo() (domain.ITagRepository, domain.IArticleRepository) {
@@ -76,7 +75,7 @@ func loadRepo() (domain.ITagRepository, domain.IArticleRepository) {
 
 	db, error := mssql.NewRepositories(databaseDialect, databaseUser, databasePassword, databasePort, databaseServer, databaseDatabase)
 	if error != nil {
-		log.Fatal("Error al inicializar base de datos")
+		log.Println("Error al inicializar base de datos")
 		panic(error)
 	}
 	repositoryTag := mssql.NewTagRepository(db)
@@ -87,6 +86,6 @@ func loadRepo() (domain.ITagRepository, domain.IArticleRepository) {
 func loadEnvConfig() {
 	err := godotenv.Load("config.yaml")
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println("Error loading .env file")
 	}
 }

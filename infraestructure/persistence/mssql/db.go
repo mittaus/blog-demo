@@ -17,7 +17,7 @@ func NewRepositories(Dbdriver, DbUser, DbPassword, DbPort, DbHost, DbName string
 		DbPort,
 		DbName)
 
-	log.Fatal(dsn)
+	log.Println(dsn)
 
 	db, err := gorm.Open(sqlserver.Open(dsn),
 		&gorm.Config{
@@ -25,7 +25,7 @@ func NewRepositories(Dbdriver, DbUser, DbPassword, DbPort, DbHost, DbName string
 		})
 
 	if err != nil {
-		log.Fatalf("models.Setup err: %v", err)
+		log.Println("models.Setup err: %v", err)
 	}
 
 	// db.Callback().Create().Replace("gorm:update_time_stamp", updateTimeStampForCreateCallback)
