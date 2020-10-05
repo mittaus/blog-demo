@@ -2,6 +2,7 @@ package tags
 
 import (
 	"net/http"
+	"strconv"
 
 	"example.com/mittaus/blog/domain"
 	"github.com/gin-gonic/gin"
@@ -22,9 +23,9 @@ func NewTagGet(repository domain.ITagRepository) TagGet {
 }
 
 func (t TagGet) Get(c *gin.Context) {
-	id := c.Param("id")
-
-	tags, err := t.repository.Search(id)
+	idParam := c.Param("id")
+	id, _ := strconv.Atoi(idParam)
+	tags, err := t.repository.Get(id)
 	if err != nil {
 		c.Status(http.StatusUnprocessableEntity)
 		return

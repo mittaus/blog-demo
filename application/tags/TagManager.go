@@ -24,5 +24,6 @@ func (tm TagManager) Get(c *gin.Context) {
 }
 
 func (tm TagManager) Search(c *gin.Context) {
+
 	TagsSearch.Search(tm.TagsSearch, c)
 }

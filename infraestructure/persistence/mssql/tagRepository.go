@@ -22,3 +22,13 @@ func (repo TagRepository) Search(name string) ([]*domain.Tag, error) {
 
 	return tags, nil
 }
+
+func (repo TagRepository) Get(id int) (*domain.Tag, error) {
+	var tag domain.Tag
+	err := repo.db.Find(&tag, id).Error
+	if err != nil && err != gorm.ErrRecordNotFound {
+		return nil, err
+	}
+
+	return &tag, nil
+}

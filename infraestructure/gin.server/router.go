@@ -39,7 +39,7 @@ func (rH RouterHandler) SetRoutes(r *gin.Engine) {
 	// //Nueva etiqueta
 	// apiv1.POST("/tags", v1.AddTag)
 	// //Actualizar etiqueta especificada
-	apiv1.PUT("/tags/:id", rH.tagHandler.Get)
+	apiv1.GET("/tag/:id", rH.tagHandler.Get)
 	// //Eliminar etiqueta especificada
 	// apiv1.DELETE("/tags/:id", v1.DeleteTag)
 	// //Exportar etiqueta
