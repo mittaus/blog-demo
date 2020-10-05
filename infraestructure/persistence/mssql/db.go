@@ -17,6 +17,8 @@ func NewRepositories(Dbdriver, DbUser, DbPassword, DbPort, DbHost, DbName string
 		DbPort,
 		DbName)
 
+	log.Fatal(dsn)
+
 	db, err := gorm.Open(sqlserver.Open(dsn),
 		&gorm.Config{
 			NamingStrategy: schema.NamingStrategy{TablePrefix: "blog_", SingularTable: true},

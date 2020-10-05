@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -24,6 +25,9 @@ func main() {
 	handler := server_routes.NewRouterHandler(serviceTag, serviceArticle)
 
 	serverPort, _ := strconv.Atoi(os.Getenv("server.port"))
+
+	fmt.Println("serverPort", serverPort)
+
 	ginServer := config.NewServer(
 		serverPort,
 		config.DebugMode,
@@ -32,6 +36,8 @@ func main() {
 	handler.SetRoutes(ginServer.Router)
 
 	ginServer.Start()
+
+	fmt.Println("server has started")
 }
 
 func loadRepo() (domain.ITagRepository, domain.IArticleRepository) {
@@ -70,6 +76,7 @@ func loadRepo() (domain.ITagRepository, domain.IArticleRepository) {
 
 	db, error := mssql.NewRepositories(databaseDialect, databaseUser, databasePassword, databasePort, databaseServer, databaseDatabase)
 	if error != nil {
+		log.Fatal("Error al inicializar base de datos")
 		panic(error)
 	}
 	repositoryTag := mssql.NewTagRepository(db)
