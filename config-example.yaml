@@ -1,8 +1,0 @@
-server:
-  host: ""
-  port: 800
-  debug: false
-  allowedOrigins: "*"
-  token: ""
-jwt:
-  salt: ""

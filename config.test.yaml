@@ -1,0 +1,12 @@
+server.host: "localhost"
+server.port: 8080
+server.debug: false
+server.allowedOrigins: "*"
+server.token: "okok"
+jwt.salt: "sdfiooir"
+database.dialect: "sqlserver"
+database.user: "sa"
+database.password: "123456Aa"
+database.port: "10433"
+database.server: "localhost"
+database.database: "BLOG_DEV"
