@@ -16,6 +16,7 @@ import (
 
 func main() {
 	//Cargamos los parámetros de config.yaml
+
 	loadEnvConfig()
 
 	repoTag, repoArticle := loadRepo()
