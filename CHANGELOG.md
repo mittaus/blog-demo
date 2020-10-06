@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/mittaus/blog-demo/compare/v1.0.1...v1.0.2) (2020-10-06)
+
+
+### Bug Fixes
+
+* No usar log.Fatal porque termina el programa ([a600663](https://github.com/mittaus/blog-demo/commit/a600663b1ba554a18436b446cada8782bbde7648))
+* Se corrige autentificación por jwt ([71446be](https://github.com/mittaus/blog-demo/commit/71446be702e94f8a9e66865a9267b58563c624b1))
+
 ## [1.0.1](https://github.com/mittaus/blog-demo/compare/v1.0.0...v1.0.1) (2020-10-05)
 
 
